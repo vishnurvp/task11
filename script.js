@@ -97,6 +97,7 @@ juliaRoom.cleanTable('julias soap'); //cleaning julias room using julias soap
 // Design a student class
 class Student {
     static numberOfStudents = 0;
+    static students = [];
     constructor(name='', age=0, phoneNumber=9999999999, boardMarks=0) {
         this.name = name;
         this.age = age;
@@ -104,6 +105,7 @@ class Student {
         this.boardMarks = boardMarks;
         Student.numberOfStudents++;
         this.studentNumber = Student.numberOfStudents;
+        Student.students.push(this);
     }
     isEligible() {
         if (this.boardMarks>40) return 'elegible';
@@ -185,5 +187,15 @@ function ElegibleForPlacements(min_marks) {
     return func;
 }
 
-let ans = ElegibleForPlacements.call(stud5, 40)(20);
-console.log(ans);
+for (let student of Student.students) {
+    if (ElegibleForPlacements.call(student, 40)(20)) console.log(student.name);
+}
+
+// kiran
+// kumar
+// praveen
+
+
+
+
+
